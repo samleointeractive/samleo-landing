@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.samleointeractive.somedayly",
+      "sha256_cert_fingerprints": [
+        "4C:51:85:02:4B:8E:19:D7:4E:7E:C7:6E:FE:55:00:26:4B:83:E6:C4:7D:7B:80:9D:E3:E8:23:AA:3A:E4:F9:17",
+        "BC:63:AB:13:09:47:78:78:63:1C:1A:2C:89:72:93:69:92:A4:6B:7B:0F:D9:BC:F3:54:20:79:38:72:5F:F4:EA"
+      ]
+    }
+  }
+]
