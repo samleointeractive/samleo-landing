@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Join a list · Somedayly</title>
+<style>
+  :root { --bg: #fbf6f1; --fg: #1d1b20; --muted: #6b6470; --card: #ffffff; --accent: #ff5a36; --line: #ece4dd; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #161210; --fg: #f1e9e4; --muted: #b6aaa2; --card: #221c19; --accent: #ff7a5c; --line: #322a26; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 460px; margin: 0 auto; padding: 48px 16px; text-align: center; }
+  .icon { width: 72px; height: 72px; border-radius: 18px; background: var(--accent); margin: 0 auto 20px;
+          display: grid; place-items: center; color: #fff; font-size: 36px; }
+  h1 { font-size: 1.6rem; margin: 0 0 8px; }
+  p { color: var(--muted); margin: 8px 0; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px; margin: 24px 0; }
+  .btn { display: block; background: var(--accent); color: #fff; text-decoration: none; font-weight: 700;
+         padding: 14px 18px; border-radius: 999px; margin: 12px 0; }
+  .btn.secondary { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+  code { font-size: 1.4rem; letter-spacing: 2px; font-weight: 700; color: var(--fg); }
+  small { color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <div class="icon" aria-hidden="true">🔖</div>
+  <h1 data-en="You're invited to a list" data-pt="Você foi convidado(a) para uma lista">You're invited to a list</h1>
+  <p data-en="Open this page on your Android phone to join it in Somedayly."
+     data-pt="Abra esta página no seu celular Android para entrar na lista pelo Somedayly.">
+     Open this page on your Android phone to join it in Somedayly.</p>
+
+  <div class="card">
+    <a id="open" class="btn" href="#" data-en="Open in Somedayly" data-pt="Abrir no Somedayly">Open in Somedayly</a>
+    <a class="btn secondary" href="https://play.google.com/store/apps/details?id=com.samleointeractive.somedayly"
+       data-en="Get Somedayly on Google Play" data-pt="Baixar o Somedayly na Google Play">Get Somedayly on Google Play</a>
+    <p data-en="Already have the app? You can also type this code in Settings › Account › Join a list with a code:"
+       data-pt="Já tem o app? Você também pode digitar este código em Ajustes › Conta › Entrar numa lista com código:">
+       Already have the app? You can also type this code in Settings › Account › Join a list with a code:</p>
+    <p><code id="code">—</code></p>
+  </div>
+  <small>Somedayly · <a href="/somedayly/privacy/" style="color: inherit">Privacy</a></small>
+</main>
+<script>
+  const code = (new URLSearchParams(location.search).get('c') || '').replace(/[^a-z0-9]/gi, '').toLowerCase();
+  document.getElementById('code').textContent = code || '—';
+  document.getElementById('open').href = code
+    ? 'intent://join?c=' + code + '#Intent;scheme=somedayly;package=com.samleointeractive.somedayly;' +
+      'S.browser_fallback_url=' + encodeURIComponent('https://play.google.com/store/apps/details?id=com.samleointeractive.somedayly') + ';end'
+    : '#';
+  if ((navigator.language || '').toLowerCase().startsWith('pt')) {
+    document.documentElement.lang = 'pt-BR';
+    document.querySelectorAll('[data-pt]').forEach(el => { el.textContent = el.dataset.pt; });
+    document.title = 'Entrar numa lista · Somedayly';
+  }
+</script>
+</body>
+</html>
