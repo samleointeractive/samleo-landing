@@ -17,6 +17,10 @@
   h3 { font-size: 1.05rem; margin: 28px 0 4px; }
   p, li { margin: 6px 0; }
   ul { padding-left: 22px; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.95rem; margin: 10px 0; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font-weight: 600; }
+  .table { overflow-x: auto; }
   .meta { color: var(--muted); margin: 0 0 24px; }
   nav a, a { color: var(--accent); }
 </style>
@@ -24,82 +28,163 @@
 <body>
 <main>
 <h1>Somedayly — Privacy Policy</h1>
-<p class="meta">Effective 17 October 2026 · Samleo Interactive · <a href="#pt">Português</a></p>
+<p class="meta">Effective 27 October 2026 · Samleo Interactive · <a href="#pt">Português</a></p>
 
-<p>Somedayly keeps everything you save on your own phone. We don't run accounts, ads or tracking, and we don't sell personal data. The only thing the app sends us is anonymous crash reports, so we can fix bugs. This policy explains the few times the app talks to other services.</p>
+<p>Somedayly works without an account: everything you save stays on your phone. If you choose to sign in, your lists are backed up to the cloud so you can use them on other phones and share them with friends. We don't show ads, we don't track you, and we never sell or share your personal data for advertising.</p>
 
 <h2>English</h2>
 
 <h3>Who we are</h3>
-<p>Somedayly is an app by Samleo Interactive (Brazil). Contact: <a href="mailto:samleointeractive@gmail.com">samleointeractive@gmail.com</a>.</p>
+<p>Somedayly is an app by Samleo Interactive (Brazil), the controller of the personal data described here. Contact for anything about privacy: <a href="mailto:samleointeractive@gmail.com">samleointeractive@gmail.com</a>.</p>
 
-<h3>What stays on your phone</h3>
-<p>The links, recommendations, notes, tags, categories, cover photos and settings you create are stored only in the app's private storage on your phone. We have no server that receives them and we cannot see them.</p>
+<h3>Without an account</h3>
+<p>The links, notes, tags, lists, cover photos and settings you create are stored only in the app's private storage on your phone. We can't see them.</p>
 
-<h3>What the app sends over the internet</h3>
+<h3>With an account (optional)</h3>
+<p>You can sign in with Google or with a code sent to your e-mail. Then we keep:</p>
+<ul>
+  <li><strong>Account details:</strong> your e-mail address and, if you use Google, the name and profile photo Google shares with us.</li>
+  <li><strong>Your lists:</strong> a copy of your lists and links (address, title, description, preview image address, notes, tags, done marks and cover choice) so they are backed up and appear on every phone where you sign in. Photos from your phone used as covers are never uploaded.</li>
+  <li><strong>Shared lists:</strong> who is in each shared list, the name shown to the other members (your first name, or the start of your e-mail address), who added each link, and invite links.</li>
+</ul>
+<p>The data travels encrypted (HTTPS) and is stored encrypted by our cloud provider. It isn't end-to-end encrypted: our provider's systems can technically access it, and we only look at it if you ask us for help or the law requires it.</p>
+<p>When you delete a link or a list, its content is erased from the cloud right away; a small marker without content remains so your other phones know to delete it too. When you sign out, your lists are removed from that phone and stay in your account.</p>
+
+<h3>Shared lists</h3>
+<p>When you share a list, everyone who joins sees the list, all its links, notes and tags, the members' display names and who added each link. Anyone with a valid invite link (valid for 14 days) and an account can join, so share it only with people you trust. The owner can remove people or stop sharing at any time. Links you add to someone else's list belong to that list while you're a member.</p>
+
+<h3>What the app sends to other services</h3>
 <ul>
   <li><strong>Link previews.</strong> When you save a link, the app requests that web page (and, for YouTube, TikTok and Pinterest, their public preview services) to read its title and image. Those sites receive a normal web request from your phone, including your IP address and the link.</li>
-  <li><strong>Cover photo search (Premium).</strong> When you search for a cover, your search words are sent to Unsplash or Openverse. Unsplash photos you choose are loaded from Unsplash's servers, and Unsplash is told the photo was used, as its rules require.</li>
+  <li><strong>Cover photo search (Premium).</strong> Your search words are sent to Unsplash or Openverse. Unsplash photos you choose are loaded from Unsplash, which is told the photo was used, as its rules require.</li>
   <li><strong>Images and fonts.</strong> Thumbnails load from the sites that host them; the app's fonts download once from Google Fonts.</li>
-  <li><strong>Purchases.</strong> Premium is bought through Google Play. Google processes the payment; the app only receives confirmation that you own Premium. We never see your payment details.</li>
-  <li><strong>Crash reports.</strong> If the app crashes or hits an unexpected error, it sends a report to Google Firebase Crashlytics: the error and where in the code it happened, the app version, the phone model and Android version, and a random installation ID. Reports never include your links, notes, tags or categories, and are not linked to your identity. Firebase keeps them for 90 days. We use them only to find and fix bugs.</li>
+  <li><strong>Purchases.</strong> Premium is bought through Google Play. Google processes the payment; the app only learns that you own Premium. We never see your payment details. Premium belongs to your Google Play account, not to your Somedayly account.</li>
+  <li><strong>Crash reports.</strong> If the app crashes, it sends Google Firebase Crashlytics the error, the app version, the phone model, the Android version and a random installation ID. Reports never include your links, notes or lists and are not linked to your account. They are kept for 90 days.</li>
 </ul>
-<p>Each of these services handles requests under its own privacy policy.</p>
+
+<h3>Service providers</h3>
+<div class="table"><table>
+  <tr><th>Provider</th><th>What for</th><th>Data</th></tr>
+  <tr><td>Supabase</td><td>Accounts and the cloud copy of your lists</td><td>Account details, lists, links, shared-list members</td></tr>
+  <tr><td>Resend</td><td>Sending the sign-in code e-mail</td><td>Your e-mail address and the code</td></tr>
+  <tr><td>Google</td><td>Google sign-in, Play purchases, crash reports</td><td>As described above</td></tr>
+</table></div>
+<p>These providers process data only on our instructions and under their data-protection terms. Their servers may be outside your country (the United States or Brazil), with the safeguards the law requires for international transfers.</p>
+
+<h3>Why we use your data (legal bases)</h3>
+<ul>
+  <li>Accounts, backup, sync and shared lists: to provide the service you asked for (performance of a contract).</li>
+  <li>Crash reports: our legitimate interest in keeping the app working; they contain no content and aren't linked to you.</li>
+  <li>Answering your messages and legal requests: legal obligations and legitimate interest.</li>
+</ul>
+
+<h3>How long we keep it</h3>
+<ul>
+  <li>Account data and your lists: until you delete them or delete your account.</li>
+  <li>Invite links: 14 days.</li>
+  <li>Crash reports: 90 days.</li>
+  <li>E-mail delivery logs: as long as Resend keeps them under its policy.</li>
+</ul>
+
+<h3>Your rights</h3>
+<p>Wherever you live, you can see, correct and delete your data in the app (edit or delete anything; <strong>Settings → Export my data</strong> gives you a copy of your lists), delete your account, and contact us to access, correct, delete or move your data, or to object to or ask about how it's used. We reply within 15 days. You can also complain to your data protection authority (in Brazil, the ANPD; in the EU, your local authority). If you're in California: we don't sell or share personal information, and we won't treat you differently for using your rights.</p>
+
+<h3>Deleting your account</h3>
+<p>In the app: <strong>Settings → Account → Delete account</strong>. This deletes your account and its cloud copy at once. Step-by-step help, and how to ask by e-mail: <a href="/somedayly/delete-account/">samleointeractive.com/somedayly/delete-account</a>.</p>
 
 <h3>Permissions</h3>
 <ul>
-  <li><strong>Notifications</strong> (optional, off by default): suggestions you turn on in Settings are scheduled on your phone; nothing is sent to us.</li>
-  <li><strong>Clipboard:</strong> when you open the app, it checks whether you copied a new link so it can offer to save it. The clipboard content is not stored or sent anywhere unless you choose to save it.</li>
-  <li><strong>Photos:</strong> only the image you pick as a category cover is used, and it stays on your phone.</li>
+  <li><strong>Notifications</strong> (optional, off by default): suggestions you turn on are scheduled on your phone; nothing is sent to us.</li>
+  <li><strong>Clipboard:</strong> when you open the app, it checks whether you copied a new link so it can offer to save it. Nothing is stored or sent unless you save it.</li>
+  <li><strong>Photos:</strong> only the image you pick as a cover is used, and it stays on your phone.</li>
 </ul>
 
 <h3>Children</h3>
-<p>Somedayly is not directed at children under 13 and we do not knowingly collect their data.</p>
+<p>Somedayly is not directed at children under 13 and we don't knowingly collect their data. If you believe a child has created an account, contact us and we'll delete it.</p>
 
-<h3>Deleting your data</h3>
-<p>Delete any link or category inside the app. Uninstalling Somedayly deletes everything it stored. We hold no copy of your saved content; crash reports are deleted automatically by Firebase after 90 days, or sooner if you ask us at the contact above.</p>
+<h3>Security incidents</h3>
+<p>If a security incident puts your data at risk, we'll tell you and the authorities within the deadlines the law sets.</p>
 
 <h3>Changes</h3>
-<p>If we add features such as accounts or cloud sync, we will update this policy before they launch and show the new effective date at the top.</p>
+<p>We'll update this page before any change in how we use data and show the new date at the top. For important changes we'll also tell you in the app.</p>
 
 <h2 id="pt" lang="pt-BR">Português (Brasil)</h2>
 <div lang="pt-BR">
-<p>O Somedayly guarda tudo o que você salva no seu próprio celular. Não usamos contas, anúncios nem rastreamento, e não vendemos dados pessoais. A única coisa que o app nos envia são relatórios de falhas anônimos, para corrigirmos erros.</p>
+<p>O Somedayly funciona sem conta: tudo o que você salva fica no seu celular. Se você escolher entrar numa conta, suas listas ganham um backup na nuvem para você usar em outros celulares e compartilhar com amigos. Não mostramos anúncios, não rastreamos você e nunca vendemos nem compartilhamos seus dados pessoais para publicidade.</p>
 
 <h3>Quem somos</h3>
-<p>O Somedayly é um app da Samleo Interactive (Brasil). Contato: <a href="mailto:samleointeractive@gmail.com">samleointeractive@gmail.com</a>.</p>
+<p>O Somedayly é um app da Samleo Interactive (Brasil), controladora dos dados pessoais descritos aqui. Contato para qualquer assunto de privacidade (canal do encarregado): <a href="mailto:samleointeractive@gmail.com">samleointeractive@gmail.com</a>.</p>
 
-<h3>O que fica no seu celular</h3>
-<p>Os links, recomendações, notas, tags, categorias, fotos de capa e ajustes que você cria ficam guardados apenas no armazenamento privado do app no seu celular. Não temos servidor que receba esses dados e não conseguimos vê-los.</p>
+<h3>Sem conta</h3>
+<p>Os links, notas, tags, listas, fotos de capa e ajustes que você cria ficam apenas no armazenamento privado do app no seu celular. Não conseguimos vê-los.</p>
 
-<h3>O que o app envia pela internet</h3>
+<h3>Com conta (opcional)</h3>
+<p>Você pode entrar com o Google ou com um código enviado ao seu e-mail. Aí guardamos:</p>
+<ul>
+  <li><strong>Dados da conta:</strong> seu e-mail e, se usar o Google, o nome e a foto de perfil que o Google nos informa.</li>
+  <li><strong>Suas listas:</strong> uma cópia das suas listas e links (endereço, título, descrição, endereço da imagem de prévia, notas, tags, marcações de feito e a capa escolhida), para ficarem com backup e aparecerem em todo celular em que você entrar. Fotos do seu celular usadas como capa nunca são enviadas.</li>
+  <li><strong>Listas compartilhadas:</strong> quem participa de cada lista compartilhada, o nome mostrado aos outros participantes (seu primeiro nome ou o início do seu e-mail), quem adicionou cada link e os links de convite.</li>
+</ul>
+<p>Os dados trafegam criptografados (HTTPS) e são guardados criptografados pelo nosso provedor de nuvem. Não há criptografia de ponta a ponta: os sistemas do provedor podem tecnicamente acessá-los, e nós só olhamos se você pedir ajuda ou se a lei exigir.</p>
+<p>Quando você apaga um link ou uma lista, o conteúdo é apagado da nuvem na hora; fica só uma marcação sem conteúdo para seus outros celulares saberem que devem apagá-lo também. Quando você sai da conta, as listas são removidas daquele celular e continuam na sua conta.</p>
+
+<h3>Listas compartilhadas</h3>
+<p>Quando você compartilha uma lista, todos que entram veem a lista, todos os links, notas e tags, os nomes dos participantes e quem adicionou cada link. Qualquer pessoa com um link de convite válido (vale 14 dias) e uma conta pode entrar, então compartilhe só com quem você confia. O dono pode remover pessoas ou parar de compartilhar quando quiser. Os links que você adiciona na lista de outra pessoa fazem parte dessa lista enquanto você participa dela.</p>
+
+<h3>O que o app envia a outros serviços</h3>
 <ul>
   <li><strong>Prévia dos links.</strong> Ao salvar um link, o app acessa essa página (e, para YouTube, TikTok e Pinterest, os serviços públicos de prévia deles) para ler o título e a imagem. Esses sites recebem uma requisição comum do seu celular, incluindo seu endereço IP e o link.</li>
-  <li><strong>Busca de fotos de capa (Premium).</strong> Ao buscar uma capa, as palavras pesquisadas são enviadas ao Unsplash ou ao Openverse. As fotos do Unsplash que você escolhe são carregadas dos servidores do Unsplash, que é avisado do uso da foto, como exigem as regras dele.</li>
+  <li><strong>Busca de fotos de capa (Premium).</strong> As palavras pesquisadas vão para o Unsplash ou o Openverse. As fotos do Unsplash que você escolhe são carregadas do Unsplash, que é avisado do uso, como exigem as regras dele.</li>
   <li><strong>Imagens e fontes.</strong> As miniaturas vêm dos sites que as hospedam; as fontes do app são baixadas uma vez do Google Fonts.</li>
-  <li><strong>Compras.</strong> O Premium é comprado pela Google Play. O Google processa o pagamento; o app recebe apenas a confirmação de que você tem o Premium. Nunca vemos seus dados de pagamento.</li>
-  <li><strong>Relatórios de falhas.</strong> Se o app travar ou tiver um erro inesperado, ele envia um relatório ao Google Firebase Crashlytics: o erro e onde no código ele aconteceu, a versão do app, o modelo do celular e a versão do Android, e um identificador aleatório da instalação. Os relatórios nunca incluem seus links, notas, tags ou categorias e não são associados à sua identidade. O Firebase os guarda por 90 dias. Usamos esses dados apenas para encontrar e corrigir erros.</li>
+  <li><strong>Compras.</strong> O Premium é comprado pela Google Play. O Google processa o pagamento; o app só fica sabendo que você tem o Premium. Nunca vemos seus dados de pagamento. O Premium fica na sua conta da Google Play, não na sua conta do Somedayly.</li>
+  <li><strong>Relatórios de falhas.</strong> Se o app travar, ele envia ao Google Firebase Crashlytics o erro, a versão do app, o modelo do celular, a versão do Android e um identificador aleatório da instalação. Os relatórios nunca incluem seus links, notas ou listas e não são associados à sua conta. São guardados por 90 dias.</li>
 </ul>
-<p>Cada um desses serviços trata as requisições conforme a própria política de privacidade.</p>
+
+<h3>Prestadores de serviço (operadores)</h3>
+<div class="table"><table>
+  <tr><th>Prestador</th><th>Para quê</th><th>Dados</th></tr>
+  <tr><td>Supabase</td><td>Contas e a cópia das suas listas na nuvem</td><td>Dados da conta, listas, links, participantes de listas compartilhadas</td></tr>
+  <tr><td>Resend</td><td>Envio do e-mail com o código de acesso</td><td>Seu e-mail e o código</td></tr>
+  <tr><td>Google</td><td>Entrar com Google, compras na Play, relatórios de falhas</td><td>Como descrito acima</td></tr>
+</table></div>
+<p>Esses prestadores tratam os dados só conforme nossas instruções e seus termos de proteção de dados. Os servidores podem ficar fora do seu país (Estados Unidos ou Brasil), com as garantias que a lei exige para transferências internacionais.</p>
+
+<h3>Por que usamos seus dados (bases legais)</h3>
+<ul>
+  <li>Contas, backup, sincronização e listas compartilhadas: para prestar o serviço que você pediu (execução de contrato).</li>
+  <li>Relatórios de falhas: nosso legítimo interesse em manter o app funcionando; não têm conteúdo e não são associados a você.</li>
+  <li>Responder suas mensagens e pedidos legais: cumprimento de obrigação legal e legítimo interesse.</li>
+</ul>
+
+<h3>Por quanto tempo guardamos</h3>
+<ul>
+  <li>Dados da conta e suas listas: até você apagá-los ou excluir a conta.</li>
+  <li>Links de convite: 14 dias.</li>
+  <li>Relatórios de falhas: 90 dias.</li>
+  <li>Registros de envio de e-mail: pelo tempo que o Resend os guarda, conforme a política dele.</li>
+</ul>
+
+<h3>Seus direitos (LGPD)</h3>
+<p>Você pode ver, corrigir e apagar seus dados no app (edite ou apague o que quiser; <strong>Ajustes → Exportar meus dados</strong> gera uma cópia das suas listas), excluir sua conta e falar conosco para pedir acesso, correção, eliminação ou portabilidade, confirmar se tratamos seus dados, saber com quem os compartilhamos ou se opor a algum uso. Respondemos em até 15 dias. Você também pode reclamar à Autoridade Nacional de Proteção de Dados (ANPD).</p>
+
+<h3>Excluir sua conta</h3>
+<p>No app: <strong>Ajustes → Conta → Excluir conta</strong>. Isso exclui sua conta e a cópia na nuvem na hora. Passo a passo e como pedir por e-mail: <a href="/somedayly/delete-account/">samleointeractive.com/somedayly/delete-account</a>.</p>
 
 <h3>Permissões</h3>
 <ul>
-  <li><strong>Notificações</strong> (opcionais, desligadas por padrão): as sugestões que você ativa em Ajustes são agendadas no seu celular; nada é enviado para nós.</li>
-  <li><strong>Área de transferência:</strong> ao abrir o app, ele verifica se você copiou um link novo para oferecer salvá-lo. O conteúdo não é guardado nem enviado a lugar nenhum, a menos que você escolha salvar.</li>
-  <li><strong>Fotos:</strong> apenas a imagem que você escolhe como capa de uma categoria é usada, e ela fica no seu celular.</li>
+  <li><strong>Notificações</strong> (opcionais, desligadas por padrão): as sugestões que você ativa são agendadas no seu celular; nada é enviado para nós.</li>
+  <li><strong>Área de transferência:</strong> ao abrir o app, ele verifica se você copiou um link novo para oferecer salvá-lo. Nada é guardado nem enviado, a menos que você salve.</li>
+  <li><strong>Fotos:</strong> apenas a imagem que você escolhe como capa é usada, e ela fica no seu celular.</li>
 </ul>
 
 <h3>Crianças</h3>
-<p>O Somedayly não é voltado a menores de 13 anos e não coletamos dados deles intencionalmente.</p>
+<p>O Somedayly não é voltado a menores de 13 anos e não coletamos dados deles intencionalmente. Se achar que uma criança criou uma conta, fale conosco e nós a excluiremos.</p>
 
-<h3>Seus direitos (LGPD)</h3>
-<p>Como os dados ficam só no seu celular, você tem controle total: pode ver, corrigir e apagar tudo dentro do app. Para dúvidas ou solicitações sobre a Lei Geral de Proteção de Dados, fale conosco pelo contato acima.</p>
-
-<h3>Como apagar seus dados</h3>
-<p>Apague qualquer link ou categoria dentro do app. Desinstalar o Somedayly apaga tudo o que ele guardou. Não temos cópia do conteúdo que você salva; os relatórios de falhas são apagados automaticamente pelo Firebase após 90 dias, ou antes, se você pedir pelo contato acima.</p>
+<h3>Incidentes de segurança</h3>
+<p>Se um incidente de segurança colocar seus dados em risco, avisaremos você e a ANPD nos prazos da lei.</p>
 
 <h3>Alterações</h3>
-<p>Se adicionarmos recursos como contas ou sincronização na nuvem, atualizaremos esta política antes do lançamento e mostraremos a nova data de vigência no topo.</p>
+<p>Atualizaremos esta página antes de qualquer mudança no uso dos dados e mostraremos a nova data no topo. Em mudanças importantes, também avisaremos no app.</p>
 </div>
 </main>
 </body>
