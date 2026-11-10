@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheatDock · samleo interactive</title>
+    <meta name="description" content="CheatDock is a free, open-source cheat sheet that docks to the edge of your Windows screen. 480+ commands for PowerShell, SQL, Python, Pandas, Git, Docker, Excel, DAX and more.">
+    <meta property="og:title" content="CheatDock: your cheat sheet, docked to the edge of the screen">
+    <meta property="og:description" content="Free and open source for Windows. Hover, click, copy, back to work.">
+    <meta property="og:image" content="https://samleointeractive.com/cheatdock/img/panel-dark.png">
+    <meta property="og:url" content="https://samleointeractive.com/cheatdock/">
+    <link rel="icon" type="image/svg+xml" href="/cheatdock/img/icon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #08090d; --fg: #f3f4f6; --muted: #a1a1aa; --dim: #71717a;
+            --card: rgba(255,255,255,.03); --card-hover: rgba(255,255,255,.055); --line: rgba(255,255,255,.07);
+            --brand: #818cf8; --blue: #4f9dff; --blue-strong: #3451d1;
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; font-family: 'Outfit', system-ui, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; overflow-x: hidden; }
+        a { color: inherit; }
+        img { max-width: 100%; display: block; }
+        code, kbd { font-family: 'Cascadia Mono', Consolas, ui-monospace, monospace; }
+        kbd { font-size: .85em; padding: 2px 7px; border-radius: 6px; border: 1px solid var(--line); background: rgba(255,255,255,.05); white-space: nowrap; }
+
+        .orb { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; }
+        .orb.one { left: 70%; top: 20%; width: min(650px, 110vw); height: min(650px, 110vw); transform: translate(-50%,-50%); background: rgba(79,157,255,.13); filter: blur(140px); }
+        .orb.two { left: 20%; top: 60%; width: min(500px, 90vw); height: min(500px, 90vw); transform: translate(-50%,-50%); background: rgba(99,102,241,.12); filter: blur(120px); }
+        .wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        nav { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; gap: 16px; }
+        .logo { font-weight: 800; text-decoration: none; font-size: 1.15rem; white-space: nowrap; }
+        .logo span { font-weight: 300; color: var(--brand); }
+        .links { display: flex; gap: 22px; font-size: .95rem; }
+        .links a { text-decoration: none; color: var(--muted); }
+        .links a:hover { color: var(--fg); }
+
+        .btn { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; font-weight: 600; padding: 13px 24px; border-radius: 999px; font-size: 1rem; transition: all .2s; border: 1px solid transparent; }
+        .btn.primary { background: linear-gradient(135deg, var(--blue), var(--blue-strong)); color: #fff; box-shadow: 0 10px 34px rgba(79,157,255,.35); }
+        .btn.primary:hover { transform: translateY(-1px); box-shadow: 0 14px 40px rgba(79,157,255,.45); }
+        .btn.ghost { border-color: var(--line); background: var(--card); }
+        .btn.ghost:hover { border-color: rgba(79,157,255,.4); background: var(--card-hover); }
+        .btn svg { width: 18px; height: 18px; }
+
+        /* hero */
+        .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; padding: 50px 0 70px; }
+        .hero-icon { width: 76px; height: 76px; margin-bottom: 18px; filter: drop-shadow(0 10px 30px rgba(79,157,255,.35)); }
+        .hero h1 { margin: 0; font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 900; letter-spacing: -.03em; line-height: 1.05; }
+        .hero h1 em { font-style: normal; background: linear-gradient(135deg, #9cc8ff, var(--blue)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .hero .sub { color: var(--muted); font-weight: 300; font-size: 1.15rem; margin: 18px 0 28px; max-width: 520px; }
+        .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+        .meta { color: var(--dim); font-size: .85rem; margin-top: 14px; }
+        .shot-hero { justify-self: center; max-width: 360px; max-height: 560px; object-fit: cover; object-position: top; border-radius: 16px; border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(79,157,255,.08); transform: rotate(1.5deg); }
+
+        section { padding: 60px 0; }
+        .eyebrow { color: var(--blue); font-size: .8rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; margin: 0 0 8px; }
+        h2 { font-size: clamp(1.8rem, 4.5vw, 2.5rem); font-weight: 800; letter-spacing: -.02em; margin: 0 0 12px; line-height: 1.15; }
+        .lead { color: var(--muted); max-width: 640px; margin: 0 0 36px; font-weight: 300; font-size: 1.08rem; }
+
+        .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        @media (max-width: 960px) { .features { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .features { grid-template-columns: 1fr; } }
+        .feature { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px; }
+        .feature .ic { font-size: 1.5rem; margin-bottom: 8px; }
+        .feature h3 { margin: 0 0 6px; font-size: 1.1rem; font-weight: 700; }
+        .feature p { margin: 0; color: var(--muted); font-weight: 300; font-size: .95rem; }
+
+        .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: start; }
+        .gallery figure { margin: 0; }
+        .gallery img { border-radius: 14px; border: 1px solid var(--line); box-shadow: 0 20px 50px rgba(0,0,0,.45); }
+        .gallery figcaption { color: var(--dim); font-size: .85rem; text-align: center; margin-top: 10px; }
+        .wide { margin-top: 26px; }
+        .wide img { border-radius: 14px; border: 1px solid var(--line); box-shadow: 0 20px 50px rgba(0,0,0,.45); }
+
+        .sheets { display: flex; flex-wrap: wrap; gap: 8px; }
+        .sheet { padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); font-size: .92rem; color: var(--muted); }
+
+        .steps { counter-reset: s; display: grid; gap: 14px; max-width: 760px; }
+        .step { counter-increment: s; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px 18px 62px; position: relative; color: var(--muted); font-weight: 300; }
+        .step::before { content: counter(s); position: absolute; left: 18px; top: 16px; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: rgba(79,157,255,.15); color: var(--blue); font-weight: 700; }
+        .step strong { color: var(--fg); font-weight: 600; }
+        .note { margin-top: 18px; max-width: 760px; border: 1px solid rgba(252,211,77,.25); background: rgba(252,211,77,.05); border-radius: 16px; padding: 16px 20px; color: #e7d9a8; font-weight: 300; font-size: .95rem; }
+
+        .keys { width: 100%; max-width: 760px; border-collapse: collapse; }
+        .keys td { padding: 11px 6px; border-bottom: 1px solid var(--line); color: var(--muted); font-weight: 300; }
+        .keys td:first-child { width: 42%; }
+
+        .support { text-align: center; background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 44px 24px; }
+        .support p { color: var(--muted); font-weight: 300; max-width: 560px; margin: 0 auto 24px; }
+        .kofi { background: #ff5e5b; color: #fff; box-shadow: 0 8px 30px rgba(255,94,91,.25); }
+        .kofi:hover { background: #f04946; transform: translateY(-1px); }
+        .support .cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+        footer { text-align: center; padding: 40px 0; border-top: 1px solid var(--line); margin-top: 50px; color: var(--dim); font-size: .85rem; }
+        footer a { color: var(--dim); }
+
+        @media (max-width: 860px) {
+            .hero { grid-template-columns: 1fr; text-align: left; padding-top: 30px; }
+            .shot-hero { transform: none; max-width: 340px; }
+            .gallery { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+            .links { display: none; }
+        }
+        @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+    </style>
+</head>
+<body>
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+
+    <div class="wrap">
+        <nav>
+            <a class="logo" href="/">samleo <span>interactive</span></a>
+            <div class="links">
+                <a href="#features">Features</a>
+                <a href="#install">Install</a>
+                <a href="https://github.com/leonardodgomes/cheatdock" target="_blank" rel="noopener">GitHub</a>
+                <a href="#support">Support</a>
+            </div>
+        </nav>
+
+        <header class="hero">
+            <div>
+                <img class="hero-icon" src="/cheatdock/img/icon.svg" alt="" width="76" height="76">
+                <h1>Your cheat sheet,<br><em>docked to the edge</em><br>of your screen.</h1>
+                <p class="sub">CheatDock stays out of the way as a small icon on the side of your monitor. Hover, click, copy the command you need, and get back to work.</p>
+                <div class="cta">
+                    <a class="btn primary" href="https://github.com/leonardodgomes/cheatdock/releases/latest/download/CheatDock-windows.zip">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v12m0 0l-5-5m5 5l5-5M4 20h16"/></svg>
+                        Download for Windows
+                    </a>
+                    <a class="btn ghost" href="https://github.com/leonardodgomes/cheatdock" target="_blank" rel="noopener">View source</a>
+                </div>
+                <p class="meta">Free &amp; open source (MIT) · Windows 10 / 11 · No install needed · ~45 MB</p>
+            </div>
+            <img class="shot-hero" src="/cheatdock/img/panel-dark.png" alt="CheatDock panel in dark theme showing SQL commands" width="550" height="1075">
+        </header>
+
+        <section id="features">
+            <p class="eyebrow">Features</p>
+            <h2>Built to stay out of your way</h2>
+            <p class="lead">No more switching to the browser to look up that one command you always forget.</p>
+            <div class="features">
+                <div class="feature"><div class="ic">🧲</div><h3>Docks to any screen</h3><p>A small icon on the edge of your monitor. Drag it to either side of any screen; it remembers where you left it.</p></div>
+                <div class="feature"><div class="ic">⚡</div><h3>Opens instantly</h3><p>Hover the icon, click it, or press <kbd>Ctrl+Alt+Space</kbd> from any app. Move away or press <kbd>Esc</kbd> to hide it.</p></div>
+                <div class="feature"><div class="ic">📋</div><h3>Click to copy</h3><p>Every command is one click from your clipboard. Search all tabs at once and press <kbd>Enter</kbd> to copy the first match.</p></div>
+                <div class="feature"><div class="ic">⭐</div><h3>Favorites &amp; most used</h3><p>Star the commands you need most. The ones you copy often show up on their own under Most used.</p></div>
+                <div class="feature"><div class="ic">🧩</div><h3>Pick your cheat sheets</h3><p>Choose from 17 cheat sheets on first launch and set the tab order. Change it any time with the ⚙ button.</p></div>
+                <div class="feature"><div class="ic">🌗</div><h3>Light &amp; dark</h3><p>Switch themes with one click. Add your own commands by editing simple YAML files.</p></div>
+            </div>
+        </section>
+
+        <section>
+            <p class="eyebrow">Screenshots</p>
+            <h2>See it in action</h2>
+            <div class="gallery">
+                <figure><img src="/cheatdock/img/panel-dark.png" alt="SQL tab in dark theme" loading="lazy" width="550" height="1075"><figcaption>Commands grouped by topic</figcaption></figure>
+                <figure><img src="/cheatdock/img/panel-favorites-light.png" alt="Favorites tab in light theme" loading="lazy" width="550" height="1075"><figcaption>Your favorites, in light theme</figcaption></figure>
+                <figure><img src="/cheatdock/img/panel-search.png" alt="Searching all cheat sheets for merge" loading="lazy" width="550" height="1075"><figcaption>Search every tab at once</figcaption></figure>
+            </div>
+            <figure class="wide"><img src="/cheatdock/img/setup.png" alt="Setup screen to choose cheat sheets" loading="lazy" width="1175" height="800"></figure>
+        </section>
+
+        <section>
+            <p class="eyebrow">Library</p>
+            <h2>17 cheat sheets, 480+ commands</h2>
+            <p class="lead">Pick the ones you use. Each becomes a tab.</p>
+            <div class="sheets">
+                <span class="sheet">PowerShell</span><span class="sheet">Bash / Linux</span><span class="sheet">CMD</span><span class="sheet">Windows shortcuts</span>
+                <span class="sheet">SQL</span><span class="sheet">Pandas</span><span class="sheet">NumPy</span><span class="sheet">Excel</span><span class="sheet">Power BI DAX</span><span class="sheet">R</span>
+                <span class="sheet">Python</span><span class="sheet">JavaScript</span><span class="sheet">Regex</span>
+                <span class="sheet">Git</span><span class="sheet">Docker</span><span class="sheet">VS Code</span><span class="sheet">Jupyter &amp; envs</span>
+            </div>
+        </section>
+
+        <section id="install">
+            <p class="eyebrow">Install</p>
+            <h2>Up and running in a minute</h2>
+            <div class="steps">
+                <div class="step"><strong>Download</strong> <code>CheatDock-windows.zip</code> and unzip it to any folder, for example <code>Documents\CheatDock</code>.</div>
+                <div class="step"><strong>Run</strong> <code>CheatDock.exe</code> and tick the cheat sheets you use on the welcome screen.</div>
+                <div class="step"><strong>Start with Windows</strong> (optional): press <kbd>Win+R</kbd>, type <code>shell:startup</code> and put a shortcut to <code>CheatDock.exe</code> in that folder.</div>
+            </div>
+            <div class="note">⚠️ <strong>"Windows protected your PC"?</strong> CheatDock is new and not code-signed yet, so Windows may show this the first time. Click <strong>More info → Run anyway</strong>. The full source code is on GitHub if you want to check it.</div>
+        </section>
+
+        <section>
+            <p class="eyebrow">Shortcuts</p>
+            <h2>Keyboard first</h2>
+            <table class="keys">
+                <tr><td><kbd>Ctrl+Alt+Space</kbd></td><td>Show / hide from anywhere</td></tr>
+                <tr><td><kbd>Ctrl+F</kbd> · <kbd>Enter</kbd></td><td>Search · copy the first match</td></tr>
+                <tr><td><kbd>Ctrl+1</kbd> … <kbd>Ctrl+9</kbd></td><td>Switch tab (1 = Favorites)</td></tr>
+                <tr><td><kbd>Ctrl+,</kbd></td><td>Choose cheat sheets</td></tr>
+                <tr><td><kbd>Ctrl+T</kbd></td><td>Light / dark theme</td></tr>
+                <tr><td><kbd>Ctrl+P</kbd></td><td>Pin the panel open</td></tr>
+                <tr><td><kbd>Esc</kbd> · <kbd>Ctrl+Q</kbd></td><td>Hide · quit</td></tr>
+            </table>
+        </section>
+
+        <section id="support">
+            <div class="support">
+                <p class="eyebrow">Support</p>
+                <h2>CheatDock is free. Help keep it that way.</h2>
+                <p>If it saves you time, consider buying us a coffee. Ideas, bug reports and new cheat sheets are welcome on GitHub too.</p>
+                <div class="cta">
+                    <a class="btn kofi" href="https://ko-fi.com/samleointeractive" target="_blank" rel="noopener">☕ Support on Ko-fi</a>
+                    <a class="btn ghost" href="https://github.com/leonardodgomes/cheatdock/issues" target="_blank" rel="noopener">Suggest a feature</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            © 2026 <a href="/">Samleo Interactive</a> · CheatDock is open source under the MIT license · <a href="mailto:samleointeractive@gmail.com">Contact</a>
+        </footer>
+    </div>
+</body>
+</html>

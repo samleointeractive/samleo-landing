@@ -1,152 +1,291 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>samleo interactive</title>
-    <!-- Tailwind CSS CDN -->\
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            400: '#818cf8',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                        }
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 10s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 8s ease-in-out infinite',
-                        'glow': 'glow 5s ease-in-out infinite alternate',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        glow: {
-                            '0%': { opacity: '0.3', transform: 'scale(0.98)' },
-                            '100%': { opacity: '0.75', transform: 'scale(1.05)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Google Fonts: Outfit -->
+    <meta name="description" content="Samleo Interactive is an independent studio from Brazil making friendly, useful software: CheatDock, Somedayly and learning tools for schools.">
+    <meta property="og:title" content="samleo interactive">
+    <meta property="og:description" content="Friendly, useful software for work, life and the classroom.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://samleointeractive.com/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
-    
     <style>
+        :root {
+            --bg: #08090d;
+            --fg: #f3f4f6;
+            --muted: #a1a1aa;
+            --dim: #71717a;
+            --card: rgba(255, 255, 255, 0.03);
+            --card-hover: rgba(255, 255, 255, 0.055);
+            --line: rgba(255, 255, 255, 0.07);
+            --brand: #818cf8;
+            --brand-strong: #6366f1;
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Outfit', sans-serif;
-            background-color: #08090d;
-            color: #f3f4f6;
-            overflow: hidden;
+            margin: 0;
+            font-family: 'Outfit', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
+        a { color: inherit; }
+        img { max-width: 100%; display: block; }
 
-        /* Ambient grid pattern background */
-        .bg-grid {
+        /* ---------- ambient background ---------- */
+        .orb { position: fixed; left: 50%; top: 38%; border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); z-index: 0; }
+        .orb.one { width: min(700px, 120vw); height: min(700px, 120vw); background: rgba(79, 70, 229, 0.15); filter: blur(140px); animation: pulse 10s ease-in-out infinite; }
+        .orb.two { width: min(500px, 90vw); height: min(500px, 90vw); background: rgba(147, 51, 234, 0.14); filter: blur(100px); animation: glow 5s ease-in-out infinite alternate; }
+        .grid {
+            position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: .6;
             background-size: 40px 40px;
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-image:
+                linear-gradient(to right, rgba(255,255,255,.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,.03) 1px, transparent 1px);
+            -webkit-mask-image: radial-gradient(circle at 50% 30%, black 30%, transparent 75%);
+                    mask-image: radial-gradient(circle at 50% 30%, black 30%, transparent 75%);
         }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .55; } }
+        @keyframes glow { from { opacity: .3; transform: translate(-50%,-50%) scale(.98); } to { opacity: .75; transform: translate(-50%,-50%) scale(1.05); } }
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes shine { to { background-position: 200% center; } }
 
-        /* Radial mask overlay for subtle fading grid towards edges */
-        .grid-mask {
-            mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
-            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+        .wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* ---------- nav ---------- */
+        nav { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; gap: 16px; }
+        .logo { font-weight: 800; letter-spacing: -.01em; text-decoration: none; font-size: 1.15rem; white-space: nowrap; }
+        .logo span { font-weight: 300; color: var(--brand); }
+        .links { display: flex; gap: 22px; font-size: .95rem; }
+        .links a { text-decoration: none; color: var(--muted); transition: color .2s; }
+        .links a:hover { color: var(--fg); }
+
+        /* ---------- hero ---------- */
+        .hero { text-align: center; padding: 90px 0 110px; }
+        .hero h1 {
+            margin: 0; font-weight: 900; letter-spacing: -.03em; line-height: 1;
+            font-size: clamp(3rem, 11vw, 7.5rem); animation: float 8s ease-in-out infinite;
         }
-
-        /* Elegant shimmering gradient text animation */
-        .gradient-text-shimmer {
-            background: linear-gradient(
-                135deg, 
-                #ffffff 0%, 
-                #c7d2fe 30%, 
-                #818cf8 50%, 
-                #e0e7ff 70%, 
-                #ffffff 100%
-            );
-            background-size: 200% auto;
-            color: transparent;
-            -webkit-background-clip: text;
-            background-clip: text;
+        .hero h1 .light {
+            font-weight: 300; letter-spacing: 0;
+            background: linear-gradient(135deg, #fff 0%, #c7d2fe 30%, #818cf8 50%, #e0e7ff 70%, #fff 100%);
+            background-size: 200% auto; color: transparent;
+            -webkit-background-clip: text; background-clip: text;
             animation: shine 8s linear infinite;
         }
+        .tagline { margin: 28px auto 0; max-width: 560px; font-size: clamp(1.05rem, 2.6vw, 1.3rem); color: var(--muted); font-weight: 300; }
+        .cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 36px; }
 
-        @keyframes shine {
-            to {
-                background-position: 200% center;
-            }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 600;
+            padding: 12px 22px; border-radius: 999px; font-size: .95rem; transition: all .2s; border: 1px solid transparent;
+        }
+        .btn.primary { background: var(--brand-strong); color: #fff; box-shadow: 0 8px 30px rgba(99,102,241,.35); }
+        .btn.primary:hover { background: #4f46e5; transform: translateY(-1px); }
+        .btn.ghost { border-color: var(--line); background: var(--card); color: var(--fg); }
+        .btn.ghost:hover { border-color: rgba(129,140,248,.4); background: var(--card-hover); }
+        .btn.small { padding: 9px 16px; font-size: .88rem; }
+
+        /* ---------- sections ---------- */
+        section { padding: 70px 0; }
+        .eyebrow { color: var(--brand); font-size: .8rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; margin: 0 0 8px; }
+        h2 { font-size: clamp(1.8rem, 4.5vw, 2.6rem); font-weight: 800; letter-spacing: -.02em; margin: 0 0 12px; line-height: 1.15; }
+        .lead { color: var(--muted); max-width: 620px; margin: 0 0 40px; font-weight: 300; font-size: 1.08rem; }
+
+        /* ---------- project cards ---------- */
+        .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card {
+            background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 26px;
+            display: flex; flex-direction: column; gap: 14px; transition: border-color .25s, background .25s, transform .25s;
+            backdrop-filter: blur(6px);
+        }
+        .card:hover { border-color: rgba(129,140,248,.3); background: var(--card-hover); transform: translateY(-3px); }
+        .card-head { display: flex; align-items: center; gap: 14px; }
+        .app-icon { width: 56px; height: 56px; border-radius: 15px; flex: none; display: grid; place-items: center; font-size: 28px; }
+        .app-icon.somedayly { background: #ff5a36; }
+        .app-icon.sandbox { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+        .card h3 { margin: 0; font-size: 1.35rem; font-weight: 800; letter-spacing: -.01em; }
+        .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+        .tag { font-size: .72rem; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+        .tag.free { color: #86efac; border-color: rgba(134,239,172,.25); }
+        .tag.soon { color: #fcd34d; border-color: rgba(252,211,77,.25); }
+        .card p { margin: 0; color: var(--muted); font-weight: 300; }
+        .card .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto; padding-top: 6px; }
+        .credit { font-size: .82rem; color: var(--dim); }
+        .credit a { color: var(--muted); }
+
+        /* ---------- about / support ---------- */
+        .split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .panel { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 30px; }
+        .panel p { color: var(--muted); font-weight: 300; margin: 0 0 14px; }
+        .panel ul { color: var(--muted); font-weight: 300; padding-left: 20px; margin: 0 0 22px; }
+        .panel li { margin: 4px 0; }
+        .kofi { background: #ff5e5b; color: #fff; box-shadow: 0 8px 30px rgba(255,94,91,.25); }
+        .kofi:hover { background: #f04946; transform: translateY(-1px); }
+
+        /* ---------- footer ---------- */
+        footer { text-align: center; padding: 50px 0 40px; border-top: 1px solid var(--line); margin-top: 40px; }
+        .mail { display: inline-flex; align-items: center; gap: 8px; }
+        .mail a, .mail button {
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: .85rem; letter-spacing: .08em;
+            color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+            padding: 9px 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); cursor: pointer;
+            transition: color .2s, border-color .2s;
+        }
+        .mail button { padding: 9px 11px; }
+        .mail a:hover, .mail button:hover { color: #c7d2fe; border-color: rgba(129,140,248,.35); }
+        .mail svg { width: 15px; height: 15px; }
+        #toast { height: 18px; margin-top: 8px; font-size: .75rem; color: var(--brand); opacity: 0; transition: opacity .3s; font-family: ui-monospace, Consolas, monospace; }
+        .fine { color: var(--dim); font-size: .82rem; margin-top: 18px; }
+        .fine a { color: var(--dim); }
+
+        @media (max-width: 760px) {
+            .links { display: none; }
+            .split { grid-template-columns: 1fr; }
+            .hero { padding: 60px 0 70px; }
+            section { padding: 50px 0; }
+            .projects { grid-template-columns: 1fr; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
         }
     </style>
 </head>
-<body class="min-h-screen w-full flex flex-col justify-between items-center relative select-none p-6 sm:p-12">
+<body>
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="grid"></div>
 
-    <!-- Ambient Light Orbs -->
-    <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[700px] h-[500px] sm:h-[700px] bg-indigo-600/15 rounded-full blur-[140px] pointer-events-none animate-pulse-slow"></div>
-    <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-purple-600/15 rounded-full blur-[100px] pointer-events-none animate-glow"></div>
+    <div class="wrap">
+        <nav>
+            <a class="logo" href="/">samleo <span>interactive</span></a>
+            <div class="links">
+                <a href="#projects">Projects</a>
+                <a href="#about">About</a>
+                <a href="#support">Support</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
 
-    <!-- Subtle Grid Background -->
-    <div class="absolute inset-0 bg-grid grid-mask pointer-events-none opacity-60"></div>
+        <header class="hero">
+            <h1>samleo <span class="light">interactive</span></h1>
+            <p class="tagline">Friendly, useful software for work, life and the classroom.</p>
+            <div class="cta">
+                <a class="btn primary" href="#projects">See our projects</a>
+                <a class="btn ghost" href="https://ko-fi.com/samleointeractive" target="_blank" rel="noopener">☕ Support us</a>
+            </div>
+        </header>
 
-    <!-- Header Spacer for Flex Alignment -->
-    <div></div>
+        <section id="projects">
+            <p class="eyebrow">Projects</p>
+            <h2>What we're building</h2>
+            <p class="lead">Small, focused apps that respect your time and your data. No ads, no tracking.</p>
 
-    <!-- Center Branding Title -->
-    <main class="relative z-10 text-center animate-float my-auto">
-        <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight leading-none">
-            <span class="text-white font-extrabold tracking-tight">samleo</span> 
-            <span class="gradient-text-shimmer font-light tracking-normal">interactive</span>
-        </h1>
-    </main>
+            <div class="projects">
+                <article class="card">
+                    <div class="card-head">
+                        <img class="app-icon" src="/cheatdock/img/icon.svg" alt="CheatDock icon" width="56" height="56">
+                        <div>
+                            <h3>CheatDock</h3>
+                            <div class="tags"><span class="tag">Windows</span><span class="tag free">Free &amp; open source</span></div>
+                        </div>
+                    </div>
+                    <p>A cheat sheet that docks to the edge of your screen. 480+ commands for PowerShell, SQL, Python, Pandas, Git, Docker, Excel, DAX and more. Hover, click, copy, back to work.</p>
+                    <div class="actions">
+                        <a class="btn primary small" href="https://github.com/leonardodgomes/cheatdock/releases/latest/download/CheatDock-windows.zip">Download</a>
+                        <a class="btn ghost small" href="/cheatdock/">Learn more</a>
+                    </div>
+                </article>
 
-    <!-- Minimalist Footer Email Link -->
-    <footer class="relative z-10 text-center pb-2 sm:pb-4">
-        <div class="inline-flex items-center gap-2 group">
-            <a href="mailto:samleointeractive@gmail.com" 
-               class="text-xs sm:text-sm tracking-widest text-zinc-400 hover:text-indigo-300 transition-colors duration-300 font-mono flex items-center gap-2 px-4 py-2 rounded-full border border-white/5 hover:border-indigo-500/30 bg-white/[0.02] hover:bg-white/[0.05] backdrop-blur-sm shadow-lg shadow-black/40">
-                <svg class="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 002-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                </svg>
-                <span>samleointeractive@gmail.com</span>
-            </a>
-            <button onclick="copyEmail(this)" 
-                    title="Copy to clipboard"
-                    class="p-2 text-zinc-500 hover:text-indigo-300 rounded-full border border-white/5 hover:border-indigo-500/30 bg-white/[0.02] hover:bg-white/[0.05] backdrop-blur-sm transition-colors duration-300">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                </svg>
-            </button>
-        </div>
-        <!-- Toast message -->
-        <div id="toast" class="opacity-0 transition-opacity duration-300 text-[11px] text-indigo-400 font-mono mt-2 h-4">
-            Copied to clipboard
-        </div>
-    </footer>
+                <article class="card">
+                    <div class="card-head">
+                        <div class="app-icon somedayly" aria-hidden="true">🔖</div>
+                        <div>
+                            <h3>Somedayly</h3>
+                            <div class="tags"><span class="tag">Android</span><span class="tag">No ads</span></div>
+                        </div>
+                    </div>
+                    <p>Save the links you want to read, watch or visit someday, organise them into lists and share lists with friends. Works without an account, with optional cloud sync.</p>
+                    <div class="actions">
+                        <a class="btn primary small" href="https://play.google.com/store/apps/details?id=com.samleointeractive.somedayly" target="_blank" rel="noopener">Get it on Google Play</a>
+                        <a class="btn ghost small" href="/somedayly/privacy/">Privacy</a>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-head">
+                        <div class="app-icon sandbox" aria-hidden="true">🧪</div>
+                        <div>
+                            <h3>Sandboxels for Schools</h3>
+                            <div class="tags"><span class="tag">Web</span><span class="tag soon">Coming soon</span></div>
+                        </div>
+                    </div>
+                    <p>A classroom-friendly edition of the falling-sand science sandbox, so students can explore chemistry, physics and cause and effect by experimenting.</p>
+                    <p class="credit">Based on <a href="https://sandboxels.r74n.com/" target="_blank" rel="noopener">Sandboxels by R74n</a>.</p>
+                    <div class="actions">
+                        <a class="btn ghost small" href="mailto:samleointeractive@gmail.com?subject=Sandboxels%20for%20Schools">Tell me when it's ready</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="split">
+                <div class="panel">
+                    <p class="eyebrow">About</p>
+                    <h2>An independent studio from Brazil</h2>
+                    <p>Samleo Interactive makes practical software for developers, data people, everyday life and schools.</p>
+                    <p>Every project starts from a real need: finding the right command without leaving your work, keeping track of things you want to do someday, or helping students learn by experimenting.</p>
+                </div>
+                <div class="panel" id="support">
+                    <p class="eyebrow">Support</p>
+                    <h2>Enjoying our apps?</h2>
+                    <p>Some of our tools are free, and they stay that way thanks to people like you. Every coffee helps us:</p>
+                    <ul>
+                        <li>keep the free tools free and ad-free</li>
+                        <li>build classroom features teachers actually need</li>
+                        <li>ship new updates and new projects</li>
+                    </ul>
+                    <a class="btn kofi" href="https://ko-fi.com/samleointeractive" target="_blank" rel="noopener">☕ Support us on Ko-fi</a>
+                </div>
+            </div>
+        </section>
+
+        <footer id="contact">
+            <div class="mail">
+                <a href="mailto:samleointeractive@gmail.com">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    samleointeractive@gmail.com
+                </a>
+                <button type="button" onclick="copyEmail()" title="Copy to clipboard" aria-label="Copy email address">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                </button>
+            </div>
+            <div id="toast">Copied to clipboard</div>
+            <p class="fine">© 2026 Samleo Interactive · <a href="/cheatdock/">CheatDock</a> · <a href="/somedayly/privacy/">Somedayly privacy</a></p>
+        </footer>
+    </div>
 
     <script>
-        function copyEmail(btn) {
+        function copyEmail() {
             const email = 'samleointeractive@gmail.com';
-            const textarea = document.createElement('textarea');
-            textarea.value = email;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-
-            const toast = document.getElementById('toast');
-            toast.style.opacity = '1';
-            setTimeout(() => {
-                toast.style.opacity = '0';
-            }, 2000);
+            const done = () => {
+                const t = document.getElementById('toast');
+                t.style.opacity = '1';
+                setTimeout(() => { t.style.opacity = '0'; }, 2000);
+            };
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(email).then(done, done);
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = email; document.body.appendChild(ta); ta.select();
+                document.execCommand('copy'); document.body.removeChild(ta); done();
+            }
         }
     </script>
 </body>
