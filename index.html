@@ -9,6 +9,7 @@
     <meta property="og:description" content="Friendly, useful software for work, life and the classroom.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://samleointeractive.com/">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%236366f1%27/%3E%3Ctext x=%2750%27 y=%2770%27 font-family=%27sans-serif%27 font-size=%2760%27 font-weight=%27900%27 fill=%27white%27 text-anchor=%27middle%27%3Es%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
@@ -107,8 +108,7 @@
         .card:hover { border-color: rgba(129,140,248,.3); background: var(--card-hover); transform: translateY(-3px); }
         .card-head { display: flex; align-items: center; gap: 14px; }
         .app-icon { width: 56px; height: 56px; border-radius: 15px; flex: none; display: grid; place-items: center; font-size: 28px; }
-        .app-icon.somedayly { background: #ff5a36; }
-        .app-icon.sandbox { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+                .app-icon.sandbox { background: linear-gradient(135deg, #f59e0b, #ef4444); }
         .card h3 { margin: 0; font-size: 1.35rem; font-weight: 800; letter-spacing: -.01em; }
         .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
         .tag { font-size: .72rem; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
@@ -204,13 +204,14 @@
 
                 <article class="card">
                     <div class="card-head">
-                        <div class="app-icon somedayly" aria-hidden="true">🔖</div>
+                        <img class="app-icon" src="/somedayly/img/icon.svg" alt="Somedayly icon" width="56" height="56">
                         <div>
                             <h3>Somedayly</h3>
-                            <div class="tags"><span class="tag">Android</span><span class="tag">No ads</span></div>
+                            <div class="tags"><span class="tag">Android</span><span class="tag free">Free</span><span class="tag">No ads</span></div>
                         </div>
                     </div>
-                    <p>Save the links you want to read, watch or visit someday, organise them into lists and share lists with friends. Works without an account, with optional cloud sync.</p>
+                    <p>Found a recipe on Reels, a place on TikTok or a movie a friend recommended? Share it to Somedayly in one tap. It fills in the title and picture, files it in the right category, and "Pick for me" helps you actually use what you saved.</p>
+                    <p class="credit">No account needed: everything stays on your phone. Optional Premium is a one-time purchase.</p>
                     <div class="actions">
                         <a class="btn primary small" href="https://play.google.com/store/apps/details?id=com.samleointeractive.somedayly" target="_blank" rel="noopener">Get it on Google Play</a>
                         <a class="btn ghost small" href="/somedayly/privacy/">Privacy</a>
@@ -240,7 +241,7 @@
                     <p class="eyebrow">About</p>
                     <h2>An independent studio from Brazil</h2>
                     <p>Samleo Interactive makes practical software for developers, data people, everyday life and schools.</p>
-                    <p>Every project starts from a real need: finding the right command without leaving your work, keeping track of things you want to do someday, or helping students learn by experimenting.</p>
+                    <p>Every project starts from a real need: finding the right command without leaving your work, saving the things you want to watch, cook or visit someday, or helping students learn by experimenting.</p>
                 </div>
                 <div class="panel" id="support">
                     <p class="eyebrow">Support</p>
