@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CheatDock · samleo interactive</title>
-    <meta name="description" content="CheatDock is a free, open-source cheat sheet that docks to the edge of your Windows screen. 530+ commands for PowerShell, SQL, Python, Pandas, Databricks, Git, Docker, Excel, DAX and more.">
+    <meta name="description" content="CheatDock is a free, open-source cheat sheet that docks to the edge of your screen on Windows and Linux. 530+ commands for PowerShell, SQL, Python, Pandas, Databricks, Git, Docker, Excel, DAX and more.">
     <meta property="og:title" content="CheatDock: your cheat sheet, docked to the edge of the screen">
-    <meta property="og:description" content="Free and open source for Windows. Hover, click, copy, back to work.">
+    <meta property="og:description" content="Free and open source for Windows and Linux. Hover, click, copy, back to work.">
     <meta property="og:image" content="https://samleointeractive.com/cheatdock/img/panel-dark.png">
     <meta property="og:url" content="https://samleointeractive.com/cheatdock/">
     <link rel="icon" type="image/svg+xml" href="/cheatdock/img/icon.svg">
@@ -132,9 +132,10 @@
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v12m0 0l-5-5m5 5l5-5M4 20h16"/></svg>
                         Download for Windows
                     </a>
+                    <a class="btn ghost" href="https://github.com/samleointeractive/CheatDock/releases/latest/download/CheatDock-linux.tar.gz">Download for Linux</a>
                     <a class="btn ghost" href="https://github.com/samleointeractive/CheatDock" target="_blank" rel="noopener">View source</a>
                 </div>
-                <p class="meta">Free &amp; open source (MIT) · Windows 10 / 11 · No install needed · ~45 MB</p>
+                <p class="meta">Free &amp; open source (MIT) · Windows 10 / 11 and Linux (x64) · No install needed</p>
             </div>
             <img class="shot-hero" src="/cheatdock/img/panel-dark.png" alt="CheatDock panel in dark theme showing SQL commands" width="550" height="1075">
         </header>
@@ -145,10 +146,10 @@
             <p class="lead">No more switching to the browser to look up that one command you always forget.</p>
             <div class="features">
                 <div class="feature"><div class="ic">🧲</div><h3>Docks to any screen</h3><p>A small icon on the edge of your monitor. Drag it to either side of any screen; it remembers where you left it.</p></div>
-                <div class="feature"><div class="ic">⚡</div><h3>Opens instantly</h3><p>Hover the icon, click it, or press <kbd>Ctrl+Alt+Space</kbd> from any app. Move away or press <kbd>Esc</kbd> to hide it.</p></div>
+                <div class="feature"><div class="ic">⚡</div><h3>Opens instantly</h3><p>Hover the icon, click it, or press <kbd>Ctrl+Alt+Space</kbd> from any app (on Linux, bind any shortcut). Move away or press <kbd>Esc</kbd> to hide it.</p></div>
                 <div class="feature"><div class="ic">📋</div><h3>Click to copy</h3><p>Every command is one click from your clipboard. Cards with several commands let you copy one line at a time. Search all tabs at once and press <kbd>Enter</kbd> to copy the first match.</p></div>
                 <div class="feature"><div class="ic">⭐</div><h3>Favorites &amp; most used</h3><p>Star the commands you need most. The ones you copy often show up on their own under Most used.</p></div>
-                <div class="feature"><div class="ic">🧩</div><h3>Pick your cheat sheets</h3><p>Choose from 18 cheat sheets on first launch and set the tab order. Change it any time with the ⚙ button.</p></div>
+                <div class="feature"><div class="ic">🧩</div><h3>Pick your cheat sheets</h3><p>Choose from 18 cheat sheets on first launch and set the tab order. Databricks shows PySpark and SQL side by side.</p></div>
                 <div class="feature"><div class="ic">🌗</div><h3>Light &amp; dark</h3><p>Switch themes with one click. Add your own commands by editing simple YAML files.</p></div>
             </div>
         </section>
@@ -179,19 +180,27 @@
         <section id="install">
             <p class="eyebrow">Install</p>
             <h2>Up and running in a minute</h2>
+            <h3 style="margin-top:22px">On Windows</h3>
             <div class="steps">
                 <div class="step"><strong>Download</strong> <code>CheatDock-windows.zip</code> and unzip it to any folder, for example <code>Documents\CheatDock</code>.</div>
                 <div class="step"><strong>Run</strong> <code>CheatDock.exe</code> and tick the cheat sheets you use on the welcome screen.</div>
                 <div class="step"><strong>Start with Windows</strong> (optional): press <kbd>Win+R</kbd>, type <code>shell:startup</code> and put a shortcut to <code>CheatDock.exe</code> in that folder.</div>
             </div>
             <div class="note">⚠️ <strong>"Windows protected your PC"?</strong> CheatDock is new and not code-signed yet, so Windows may show this the first time. Click <strong>More info → Run anyway</strong>. The full source code is on GitHub if you want to check it.</div>
+            <h3 style="margin-top:34px">On Linux</h3>
+            <div class="steps">
+                <div class="step"><strong>Download</strong> <a href="https://github.com/samleointeractive/CheatDock/releases/latest/download/CheatDock-linux.tar.gz"><code>CheatDock-linux.tar.gz</code></a> and unpack it: <code>tar -xzf CheatDock-linux.tar.gz</code></div>
+                <div class="step"><strong>Install</strong>: run <code>./install.sh</code> inside the <code>CheatDock</code> folder to add it to your app menu (and, if you like, start it at login).</div>
+                <div class="step"><strong>Add a shortcut</strong> in your desktop's keyboard settings that runs <code>CheatDock --toggle</code>. The installer prints the exact command.</div>
+            </div>
+            <div class="note">🐧 Works on X11 and on Wayland (through XWayland). If it doesn't start on Debian or Ubuntu, run <code>sudo apt install libxcb-cursor0 libxkbcommon-x11-0</code>.</div>
         </section>
 
         <section>
             <p class="eyebrow">Shortcuts</p>
             <h2>Keyboard first</h2>
             <table class="keys">
-                <tr><td><kbd>Ctrl+Alt+Space</kbd></td><td>Show / hide from anywhere</td></tr>
+                <tr><td><kbd>Ctrl+Alt+Space</kbd></td><td>Show / hide from anywhere (Windows; on Linux, your own shortcut)</td></tr>
                 <tr><td><kbd>Ctrl+F</kbd> · <kbd>Enter</kbd></td><td>Search · copy the first match</td></tr>
                 <tr><td><kbd>Ctrl+1</kbd> … <kbd>Ctrl+9</kbd></td><td>Switch tab (1 = Favorites)</td></tr>
                 <tr><td><kbd>Ctrl+,</kbd></td><td>Choose cheat sheets</td></tr>
