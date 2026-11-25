@@ -82,6 +82,14 @@
   <footer>Samleo Interactive · <a href="/somedayly/privacy/" data-en="Privacy" data-pt="Privacidade">Privacy</a></footer>
 </main>
 <script>
+  // ?s=instagram|tiktok|youtube|facebook (one per bio) -> utm_source on the Play link; anything else stays "bio".
+  const source = (new URLSearchParams(location.search).get('s') || '').toLowerCase();
+  if (['instagram', 'tiktok', 'youtube', 'facebook'].includes(source)) {
+    const play = document.querySelector('a.primary');
+    const url = new URL(play.href);
+    url.searchParams.set('utm_source', source);
+    play.href = url.href;
+  }
   if ((navigator.language || '').toLowerCase().startsWith('pt')) {
     document.documentElement.lang = 'pt-BR';
     document.querySelectorAll('[data-pt]').forEach(el => { el.innerHTML = el.dataset.pt; });
